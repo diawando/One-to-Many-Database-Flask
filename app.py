@@ -45,3 +45,8 @@ def post(post_id):
         return redirect(url_for('post', post_id=post.id))
     
     return render_template('post.html', post=post)
+
+@app.route('/comments/')
+def comments():
+    comments = Comment.query.order_by(Comment.id.desc()).all()
+    return render_template('comments.html', comments=comments)
