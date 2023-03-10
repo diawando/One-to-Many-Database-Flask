@@ -34,7 +34,14 @@ def index():
     posts = Post.query.all()
     return render_template('index.html', posts=posts)
 
-@app.route('/<int:post_id>/')
+@app.route('/<int:post_id>/', methods=('GET', 'POST') )
 def post(post_id):
     post = Post.query.get_or_404(post_id)
+    if request.method == 'POST':
+        comment = Comment(content=request.form['content'],
+                          post=post)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('post', post_id=post.id))
+    
     return render_template('post.html', post=post)
