@@ -13,6 +13,18 @@
                </div>
                <hr>
                <h3>Comments</h3>
+               <form method="post">
+                    <p>
+                        <textarea name="content"
+                                   placeholder="comment"
+                                   cols="60"
+                                   rows="5"></textarea>
+                    </p>
+
+                    <p>
+                        <button type="submit">Add comment</button>
+                    </p>
+               </form>
                {% for comment in post.comments %}
                <div class="comment">
                     <p>#{{ comment.id }}</p>
