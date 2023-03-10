@@ -28,4 +28,8 @@ class Comment(db.Model):
     def __repr_(self):
         return f'<Comment "{self.content[:20]}...">'
     
-    
+
+@app.route('/')
+def index():
+    posts = Post.query.all()
+    return render_template('index.html', posts=posts)
