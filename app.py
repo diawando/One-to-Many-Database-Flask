@@ -50,3 +50,12 @@ def post(post_id):
 def comments():
     comments = Comment.query.order_by(Comment.id.desc()).all()
     return render_template('comments.html', comments=comments)
+
+
+@app.route('/comments/<int:comment_id>/delete')
+def delete_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    post_id = comment.post.id
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for('post', post_id=post_id))
