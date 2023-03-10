@@ -29,6 +29,12 @@
                <div class="comment">
                     <p>#{{ comment.id }}</p>
                     <p>{{ comment.content }}</p>
+                    <form method="POST"
+                          action="{{ url_for('delete_comment',
+                                               comment_id=comment.id) }}">
+                        <input type="submit" value="Delete Comment"
+                             onclick="return confirm('Are you sure you want to delete this entry?')">
+                    </form>
                </div>
                {% endfor %}
           </div>

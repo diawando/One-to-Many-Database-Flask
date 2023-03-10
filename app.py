@@ -52,7 +52,7 @@ def comments():
     return render_template('comments.html', comments=comments)
 
 
-@app.route('/comments/<int:comment_id>/delete')
+@app.post('/comments/<int:comment_id>/delete')
 def delete_comment(comment_id):
     comment = Comment.query.get_or_404(comment_id)
     post_id = comment.post.id
