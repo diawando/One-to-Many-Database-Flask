@@ -33,3 +33,8 @@ class Comment(db.Model):
 def index():
     posts = Post.query.all()
     return render_template('index.html', posts=posts)
+
+@app.route('/<int:post_id>/')
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', post=post)
